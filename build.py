@@ -17,7 +17,15 @@ for b in books:
  page(b['path'],b['title'],f'''<section class="inner split"><div>{img(b['cover'],b['title']+' book cover','cover')}</div><div><p class="eyebrow">Fiction · Technothriller</p><h1>{esc(b['title'])}</h1><p class="subtitle">{esc(b['subtitle'])}</p>{''.join('<p>'+esc(p)+'</p>' for p in b['description'])}{button('/shop-hidden','Find a retailer')}</div></section>''')
 about=json.loads(Path('about.json').read_text())
 page('/about','About',f'''<section class="inner split"><div>{img(about['photo'],'Mark Hanna','portrait')}</div><div><p class="eyebrow">Biography</p><h1>Mark Hanna</h1>{''.join('<p>'+esc(p)+'</p>' for p in about['paragraphs'])}</div></section>''')
-page('/shop-hidden','Shop',f'''<section class="inner"><p class="eyebrow">Book retailers</p><h1>Shop</h1><p class="subtitle">{book['title']}: {book['subtitle']}</p><p>Choose a retailer for editions, pricing, and availability.</p><div class="retailers">{''.join(button(url,label+' ↗','retailer') for label,url in book['retailers'])}</div></section>''')
+retailer_logos = {"Mises Store":"mises","ThriftBooks":"thriftbooks","eBay":"ebay","Kobo":"kobo","Barnes & Noble":"barnes-noble"}
+
+def retailer_link(label, url):
+ logo = retailer_logos.get(label)
+ if not logo:
+  return button(url, label + ' ↗', 'retailer')
+ return f'<a class="retailer retailer-logo" href="{esc(url)}"><img src="/assets/retailers/{logo}.webp" alt="{esc(label)}"></a>'
+
+page('/shop-hidden','Shop',f'''<section class="inner"><p class="eyebrow">Book retailers</p><h1>Shop</h1><p class="subtitle">{book['title']}: {book['subtitle']}</p><p>Choose a retailer for editions, pricing, and availability.</p><div class="retailers">{''.join(retailer_link(label,url) for label,url in book['retailers'])}</div></section>''')
 page('/contact','Contact','''<section class="inner narrow"><h1>Contact Mark</h1><form id="contact" action="/api/contact" method="post"><div class="fields"><label>First name<input name="firstName" required maxlength="100" autocomplete="given-name"></label><label>Last name<input name="lastName" required maxlength="100" autocomplete="family-name"></label></div><label>Email<input name="email" type="email" required maxlength="254" autocomplete="email"></label><label>Message<textarea name="message" rows="7" required maxlength="5000"></textarea></label><div hidden><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div><button class="button">Send message</button><p id="form-status" role="status"></p></form></section>''')
 page('/search','Search','<section class="inner"><h1>Search</h1><div id="results" role="status"></div></section>')
 Path('search-index.json').write_text(json.dumps([{'title':b['title'],'url':b['path'],'text':b['subtitle']+' '+' '.join(b['description'])} for b in books]+[{'title':'About Mark Hanna','url':'/about','text':' '.join(about['paragraphs'])},{'title':'Shop','url':'/shop-hidden','text':'Order buy retailers'},{'title':'Contact','url':'/contact','text':'Message email'}]))
