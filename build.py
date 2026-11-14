@@ -17,7 +17,7 @@ for b in books:
  page(b['path'],b['title'],f'''<section class="inner split"><div>{img(b['cover'],b['title']+' book cover','cover')}</div><div><p class="eyebrow">Fiction · Technothriller</p><h1>{esc(b['title'])}</h1><p class="subtitle">{esc(b['subtitle'])}</p>{''.join('<p>'+esc(p)+'</p>' for p in b['description'])}{button('/shop-hidden','Find a retailer')}</div></section>''')
 about=json.loads(Path('about.json').read_text())
 page('/about','About',f'''<section class="inner split"><div>{img(about['photo'],'Mark Hanna','portrait')}</div><div><p class="eyebrow">Biography</p><h1>Mark Hanna</h1>{''.join('<p>'+esc(p)+'</p>' for p in about['paragraphs'])}</div></section>''')
-retailer_logos = {"Mises Store":"mises","ThriftBooks":"thriftbooks","eBay":"ebay","Kobo":"kobo","Barnes & Noble":"barnes-noble"}
+retailer_logos = {"Mises Store":"mises","ThriftBooks":"thriftbooks","eBay":"ebay","Kobo":"kobo","Barnes & Noble":"barnes-noble","Amazon":"amazon","Google Books":"google-books","Books-A-Million":"books-a-million","Walmart":"walmart","Bookshop.org":"bookshop"}
 
 def retailer_link(label, url):
  logo = retailer_logos.get(label)
