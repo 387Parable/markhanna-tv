@@ -1,7 +1,6 @@
 [
   {
     "title": "A Beloved Classic Retold for the Modern World",
-    "url": "https://www.amazon.com/portal/customer-reviews/srp/-/R1ZD77DUMF43HX/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8",
     "name": "Michael Fedison",
     "credential": "Author and editor",
     "paragraphs": [
@@ -13,17 +12,10 @@
   },
   {
     "title": "An Enjoyable Read",
-    "url": "https://www.amazon.com/portal/customer-reviews/srp/-/RDACPC1JO75Y9/ref=cm_cr_dp_d_rvw_ttl?_encoding=UTF8&ie=UTF8",
     "name": "Steven Samson",
     "affiliations": [
-      [
-        "Liberty University",
-        "https://liberty.academia.edu/"
-      ],
-      [
-        "Helms School of Government",
-        "https://liberty.academia.edu/Departments/Helms_School_of_Government/Documents"
-      ]
+      "Liberty University",
+      "Helms School of Government"
     ],
     "credential": "Emeritus",
     "paragraphs": [
@@ -36,6 +28,7 @@
     "paragraphs": [
       "While using a classic story, Mark Hanna intertwines a journey through your mind as well as a journey of redemption. Naming the “monsters” we deal with play a roll in beating them. This story gives our “monsters” an actual dialogue we can relate to and learn from. It exposes how our minds wrestle with us.",
       "Not only is the book entertaining, but it is soaked in wisdom and love. It is definitely worth a read!"
-    ]
+    ],
+    "title": "Worth Your Time"
   }
 ]

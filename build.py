@@ -34,13 +34,9 @@ reviews = json.loads(Path("reviews.json").read_text())
 
 def render_review(review):
     name = esc(review["name"])
-    if review.get("title"):
-        heading = f'<a href="{esc(review["url"])}">{esc(review["title"])}</a>'
-        author = f'<p class="review-author"><strong>{name}</strong></p>'
-    else:
-        heading = name
-        author = ""
-    affiliations = [f'<a href="{esc(url)}">{esc(label)}</a>' for label, url in review.get("affiliations", [])]
+    heading = esc(review["title"])
+    author = f'<p class="review-author"><strong>{name}</strong></p>'
+    affiliations = [esc(label) for label in review.get("affiliations", [])]
     credentials = ", ".join([*affiliations, esc(review["credential"])])
     paragraphs = "".join(f"<p>{esc(paragraph)}</p>" for paragraph in review["paragraphs"])
     return f'<article class="review"><div class="review-heading"><h2>{heading}</h2><span class="review-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></div>{paragraphs}<div class="review-credit">{author}<p>{credentials}</p></div></article>'
